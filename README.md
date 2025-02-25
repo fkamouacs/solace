@@ -1,50 +1,72 @@
-# Welcome to your Expo app 👋
+Stack
+react native - expo
+ui-library - https://github.com/mrzachnugent/react-native-reusables/
+chart library - https://github.com/margelo/react-native-graph
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+🔹 Phase 1 (Essential for MVP Launch)
+✅ Dream Journal (Text Entries, Tags, Search, Archive)
+✅ Spiritual Practice Tracker (Daily Logging, Streaks)
+✅ Daily Reflection (Basic Text Editor, Mood Tracker, Gratitude Log)
+✅ Daily Summary (Star Rating, Summary Checkboxes)
+✅ Basic Dashboard (Recent Entries, Streaks, Quick Actions)
 
-## Get started
+🔹 Phase 2 (Enhancing Experience & Engagement)
+🔸 Calendar View for Past Entries
+🔸 Export & Backup Options (PDF, Markdown)
+🔸 Notifications & Reminders (Journaling prompts)
+🔸 Light/Dark Mode + Customizable UI
 
-1. Install dependencies
+🔹 Phase 3 (Advanced & Community Features)
+⭐ Data Insights (Patterns & Trends in Dreams, Practices, Reflections)
+⭐ Integrations (Google Calendar Sync, Meditation Apps, etc.)
 
-   ```bash
-   npm install
-   ```
+Core Features
+Option for anonymous journaling (privacy-focused mode).
+✅ 2. Daily Dream Journal
 
-2. Start the app
+Add, edit, and delete dream entries.
+Tag dreams with themes (e.g., lucid, nightmare, prophetic).
+AI-assisted dream analysis & insights.
+Image or voice recording support for dream logging.
+Search & filter past dreams by date, tags, or emotions.
+✅ 3. Spiritual Practice Tracker
 
-   ```bash
-    npx expo start
-   ```
+Add & customize spiritual practices (meditation, prayer, yoga, rituals, etc.).
+Set daily, weekly, or monthly goals.
+Streak tracking & progress visualization (graphs/charts).
+Guided prompts & reminders for consistency.
+✅ 4. Daily Reflection Journal
 
-In the output, you'll find options to open the app in a
+Write daily reflections with rich text support.
+Mood tracker with emojis or color-coded scales.
+Gratitude logging (3 things you’re grateful for).
+Quote of the day or spiritual wisdom prompt.
+Auto-generated insights from past reflections.
+Additional Features for a More Engaging Experience
+⭐ 5. Calendar & Timeline View
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Monthly/weekly overview of dreams, practices, and reflections.
+Milestones & achievements (e.g., 30-day streak badge).
+⭐ 6. Insights & Analytics
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Trends & patterns (e.g., most common dream symbols, practice consistency).
+AI-powered suggestions based on past entries.
+⭐ 7. Community & Sharing (Optional)
 
-## Get a fresh project
+Private vs. public entries (share reflections with others).
+Discussion forums for dream interpretation & spiritual growth.
+Follow friends/mentors for motivation.
+⭐ 8. Data Security & Export Options
 
-When you're ready, run:
+End-to-end encryption for private journaling.
+Export to PDF/Markdown for personal archives.
+Sync across multiple devices.
+⭐ 9. Personalization & Themes
 
-```bash
-npm run reset-project
-```
+Light/dark mode & customizable UI themes.
+Custom fonts & background music for meditation entries.
+⭐ 10. Integrations & Reminders
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Sync with Google Calendar for practice reminders.
+Notifications for daily journaling prompts.
+AI-generated affirmations based on user input.

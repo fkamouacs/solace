@@ -1,5 +1,6 @@
-import { Text, View } from 'react-native';
+import { Alert, SafeAreaView, Text, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import React from 'react';
 
 export default function Index() {
   const { colors } = useTheme();
@@ -8,7 +9,7 @@ export default function Index() {
     <View
       style={{
         flex: 1,
-        justifyContent: 'center',
+
         alignItems: 'center',
       }}
     >

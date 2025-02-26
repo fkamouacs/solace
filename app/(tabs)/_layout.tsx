@@ -1,17 +1,83 @@
 import { Tabs } from 'expo-router';
 import {
   ChartBarStacked,
+  CircleArrowLeft,
+  CircleArrowRight,
   Drama,
   NotebookPen,
   Plus,
   Settings,
 } from 'lucide-react-native';
-import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { TouchableOpacity, View, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
+import {
+  getCurrentMonth,
+  getCurrentMonthName,
+  getCurrentYear,
+} from '~/lib/utils';
 
 function Header() {
   return <View></View>;
+}
+
+function MonthHeader() {
+  const { colors } = useTheme();
+  const [currentDate, setCurrentDate] = useState({
+    month: getCurrentMonth(),
+    year: getCurrentYear(),
+  });
+
+  const handleLeftPress = () => {
+    if (currentDate.month === 0) {
+      setCurrentDate({ month: 11, year: currentDate.year - 1 });
+    } else {
+      setCurrentDate({ month: currentDate.month - 1, year: currentDate.year });
+    }
+  };
+
+  const isCurrentDate = () => {
+    return (
+      getCurrentMonth() == currentDate.month &&
+      getCurrentYear() == currentDate.year
+    );
+  };
+
+  const handleRightPress = () => {
+    if (!isCurrentDate()) {
+      if (currentDate.month === 11) {
+        setCurrentDate({ month: 0, year: currentDate.year + 1 });
+      } else {
+        setCurrentDate({
+          month: currentDate.month + 1,
+          year: currentDate.year,
+        });
+      }
+    }
+  };
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <CircleArrowLeft
+          color={colors.text}
+          onPress={() => handleLeftPress()}
+        />
+        <Text
+          style={[
+            { fontSize: 24, marginHorizontal: 40 },
+            isCurrentDate() ? '' : { color: 'gray' },
+          ]}
+        >
+          {`${getCurrentMonthName(currentDate.month)} ${currentDate.year}`}
+        </Text>
+        <CircleArrowRight
+          color={isCurrentDate() ? 'gray' : colors.text}
+          onPress={() => handleRightPress()}
+        />
+      </View>
+    </View>
+  );
 }
 
 const CustomBottomTabBarButton = ({ children, onPress }: any) => (
@@ -57,6 +123,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Journal',
+          headerTitle: () => <MonthHeader />,
           tabBarIcon: ({ color }) => <NotebookPen size={28} color={color} />,
         }}
       />

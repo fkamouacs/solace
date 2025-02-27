@@ -16,6 +16,7 @@ import {
   getCurrentMonthName,
   getCurrentYear,
 } from '~/lib/utils';
+import CustomText from '~/components/ui/CustomText';
 
 function Header() {
   return <View></View>;
@@ -63,14 +64,14 @@ function MonthHeader() {
           color={colors.text}
           onPress={() => handleLeftPress()}
         />
-        <Text
+        <CustomText
           style={[
             { fontSize: 24, marginHorizontal: 40 },
             isCurrentDate() ? '' : { color: 'gray' },
           ]}
         >
           {`${getCurrentMonthName(currentDate.month)} ${currentDate.year}`}
-        </Text>
+        </CustomText>
         <CircleArrowRight
           color={isCurrentDate() ? 'gray' : colors.text}
           onPress={() => handleRightPress()}

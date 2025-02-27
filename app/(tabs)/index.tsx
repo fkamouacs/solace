@@ -1,6 +1,7 @@
 import { Alert, SafeAreaView, Text, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import React from 'react';
+import DiaryEntryCard from '~/components/diaryEntryCard';
 
 export default function Index() {
   const { colors } = useTheme();
@@ -13,7 +14,7 @@ export default function Index() {
         alignItems: 'center',
       }}
     >
-      <Text style={{ color: colors.text }}>diary</Text>
+      <DiaryEntryCard />
     </View>
   );
 }

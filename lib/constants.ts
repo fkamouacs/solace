@@ -1,3 +1,14 @@
+import { DefaultTheme, Theme } from '@react-navigation/native';
+
+export const FONT_SIZES = {
+  xs: 12, // Extra Small
+  sm: 14, // Small
+  base: 16, // Default / Body text
+  lg: 18, // Large
+  xl: 20, // Extra Large
+  '2xl': 24, // Extra Extra Large
+};
+
 export const NAV_THEME = {
   light: {
     background: '#F8F6F2', // background
@@ -7,6 +18,7 @@ export const NAV_THEME = {
     primary: '#9370DB', // primary
     accent: '#DCC7A1',
     text: '#222222', // foreground
+    mutedText: '#4B5D8B',
   },
   dark: {
     background: '#2B2B2B', // background
@@ -16,5 +28,17 @@ export const NAV_THEME = {
     primary: '#9370DB', // primary
     accent: '#B89F75',
     text: '#F5F5F5', // foreground
+    mutedText: '#4B5D8B',
   },
+};
+
+export type CustomTheme = Theme & {
+  colors: {
+    primary: string;
+    background: string;
+    text: string;
+    card: string;
+    border: string;
+    mutedText: string;
+  };
 };

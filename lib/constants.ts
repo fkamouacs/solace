@@ -18,6 +18,7 @@ export const NAV_THEME = {
     primary: '#9370DB', // primary
     accent: '#DCC7A1',
     text: '#222222', // foreground
+    altText: '#F5F5F5',
     mutedText: '#4B5D8B',
   },
   dark: {
@@ -28,6 +29,7 @@ export const NAV_THEME = {
     primary: '#9370DB', // primary
     accent: '#B89F75',
     text: '#F5F5F5', // foreground
+    altText: '#222222',
     mutedText: '#4B5D8B',
   },
 };
@@ -40,5 +42,6 @@ export type CustomTheme = Theme & {
     card: string;
     border: string;
     mutedText: string;
+    altText: string;
   };
 };

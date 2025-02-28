@@ -6,8 +6,9 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from './ui/Card';
+import Badge from './ui/Badge';
+
 import { useTheme } from '@react-navigation/native';
 import { CustomTheme } from '~/lib/constants';
 import CustomText from './ui/CustomText';
@@ -28,6 +29,15 @@ const DiaryEntryCard = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat. 
           </CustomText>
+        </CardContent>
+        <CardContent
+          style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}
+        >
+          <Badge variant="pride" style="default" colors={colors} />
+          <Badge variant="greed" style="default" colors={colors} />
+          <Badge variant="lust" style="default" colors={colors} />
+          <Badge variant="sloth" style="default" colors={colors} />
+          <Badge variant="wrath" style="default" colors={colors} />
         </CardContent>
         <CardFooter colors={colors}>
           <Text style={{ color: colors.mutedText }}>10:20 PM</Text>

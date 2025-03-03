@@ -5,11 +5,13 @@ import CustomText from './ui/CustomText';
 import { CardContent, CardFooter } from './ui/Card';
 import Badge from './ui/Badge';
 import { useTheme } from '@react-navigation/native';
+import { getTimeFromDate } from '~/lib/utils';
 
 const diaryEntry = (props: { entry: Entry }) => {
   const { colors } = useTheme() as CustomTheme;
   const { id, date, text, tags } = props.entry;
 
+  console.log(typeof date);
   const displayTags = () => {
     return tags.map((tag) => {
       return (
@@ -28,8 +30,8 @@ const diaryEntry = (props: { entry: Entry }) => {
       >
         {displayTags()}
       </CardContent>
-      <CardFooter colors={colors}>
-        <Text style={{ color: colors.mutedText }}>{date}</Text>
+      <CardFooter colors={colors} style={{ marginBottom: 24 }}>
+        <Text style={{ color: colors.mutedText }}>{getTimeFromDate(date)}</Text>
       </CardFooter>
     </>
   );

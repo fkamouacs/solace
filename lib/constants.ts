@@ -48,7 +48,7 @@ export type CustomTheme = Theme & {
 
 export type Entry = {
   id: string;
-  date: string;
+  date: Date;
   text: string;
   tags: BadgeVariant[];
 };

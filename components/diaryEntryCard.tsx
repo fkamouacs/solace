@@ -14,23 +14,16 @@ import { CustomTheme, Entry } from '~/lib/constants';
 import CustomText from './ui/CustomText';
 import { EntryExitTransition } from 'react-native-reanimated';
 import DiaryEntry from './diaryEntry';
+import { formatDateToDayName, sortEntriesByDate } from '~/lib/utils';
 
-const DiaryEntryCard = (props: { entries: Entry[]; date: string }) => {
+const DiaryEntryCard = (props: { entries: Entry[]; date: Date }) => {
   const { colors } = useTheme() as CustomTheme;
   const screenWidth = Dimensions.get('window').width;
 
   const entries = props.entries;
 
-  // const displayTags = () => {
-  //   return tags.map((tag) => {
-  //     return (
-  //       <Badge key={id} variant={tag} badgeStyle="default" colors={colors} />
-  //     );
-  //   });
-  // };
-
   const displayEntries = () => {
-    return entries.map((entry) => {
+    return sortEntriesByDate(entries, true).map((entry) => {
       return <DiaryEntry key={entry.id} entry={entry} />;
     });
   };
@@ -41,8 +34,10 @@ const DiaryEntryCard = (props: { entries: Entry[]; date: string }) => {
         style={{ width: screenWidth * 0.75, paddingVertical: 12 }}
         colors={colors}
       >
-        <CardHeader style={{ paddingBottom: 12 }}>
-          <CardDescription colors={colors}>{props.date}</CardDescription>
+        <CardHeader>
+          <CardDescription colors={colors}>
+            {formatDateToDayName(props.date)}
+          </CardDescription>
         </CardHeader>
         {displayEntries()}
       </Card>

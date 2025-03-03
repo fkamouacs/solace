@@ -12,6 +12,7 @@ import DiaryEntryCard from '~/components/diaryEntryCard';
 
 import { Entry } from '~/lib/constants';
 import { DiaryContext } from '../../lib/DiaryContext';
+import { stringToDate } from '~/lib/utils';
 
 export default function Index() {
   const { colors } = useTheme();
@@ -48,8 +49,13 @@ export default function Index() {
 
   const displayEntries = () => {
     return dates.map((date) => {
+      const entryDate = stringToDate(date);
       return (
-        <DiaryEntryCard key={date} date={date} entries={groupedEntries[date]} />
+        <DiaryEntryCard
+          key={date}
+          date={entryDate}
+          entries={groupedEntries[date]}
+        />
       );
     });
   };
@@ -64,7 +70,7 @@ export default function Index() {
       >
         <Button
           title="Add Test Entry"
-          onPress={() => addEntry('New diary entry!', ['pride'])}
+          onPress={() => addEntry('New diary entry1!', ['pride'])}
         />
         {displayEntries()}
       </View>

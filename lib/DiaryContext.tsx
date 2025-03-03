@@ -37,7 +37,7 @@ export const DiaryProvider = ({ children }: { children: React.ReactNode }) => {
     const newEntry: Entry = {
       id: String(Date.now()),
       text,
-      date: new Date().toISOString(),
+      date: new Date(),
       tags,
     };
     const updatedEntries = [newEntry, ...entries];

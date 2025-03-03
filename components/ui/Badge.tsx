@@ -1,9 +1,10 @@
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import React from 'react';
+import { BadgeVariant } from '~/lib/constants';
 
 type BadeProps = {
-  style: 'default' | 'secondary';
-  variant: 'pride' | 'lust' | 'gluttony' | 'sloth' | 'wrath' | 'greed' | 'envy';
+  badgeStyle: 'default' | 'secondary';
+  variant: BadgeVariant;
   colors: any;
 };
 
@@ -17,12 +18,12 @@ const variants = {
   envy: '👀 Envy',
 };
 
-const Badge = ({ style, variant, colors, ...props }: BadeProps) => {
+const Badge = ({ badgeStyle, variant, colors, ...props }: BadeProps) => {
   const styles = getBadgeVariants(colors);
 
   return (
-    <TouchableOpacity activeOpacity={0.8}>
-      <Text style={[styles.base, styles[style]]} {...props}>
+    <TouchableOpacity activeOpacity={0.8} style={{ marginRight: 5 }}>
+      <Text style={[styles.base, styles[badgeStyle]]} {...props}>
         {variants[variant]}
       </Text>
     </TouchableOpacity>
@@ -36,7 +37,7 @@ const getBadgeVariants = (colors: any) =>
       alignSelf: 'flex-start',
       borderRadius: 9999,
       borderWidth: 1,
-      paddingHorizontal: 10,
+      paddingHorizontal: 6,
       paddingVertical: 2,
       color: colors.altText,
       marginBottom: 4,

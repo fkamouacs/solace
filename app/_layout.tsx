@@ -13,7 +13,7 @@ import { useColorScheme } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-
+import { DiaryProvider } from '../lib/DiaryContext';
 const LIGHT_THEME: CustomTheme = {
   ...DefaultTheme,
   colors: NAV_THEME.light,
@@ -69,13 +69,15 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme == 'dark' ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={colorScheme == 'light' ? 'light' : 'dark'} />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="(tabs)" />
-      </Stack>
+      <DiaryProvider>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="(tabs)" />
+        </Stack>
+      </DiaryProvider>
     </ThemeProvider>
   );
 }

@@ -45,3 +45,19 @@ export type CustomTheme = Theme & {
     altText: string;
   };
 };
+
+export type Entry = {
+  id: string;
+  date: string;
+  text: string;
+  tags: BadgeVariant[];
+};
+
+export type BadgeVariant =
+  | 'pride'
+  | 'lust'
+  | 'gluttony'
+  | 'sloth'
+  | 'wrath'
+  | 'greed'
+  | 'envy';

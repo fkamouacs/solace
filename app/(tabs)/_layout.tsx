@@ -17,44 +17,30 @@ import {
   getCurrentYear,
 } from '~/lib/utils';
 import CustomText from '~/components/ui/CustomText';
+import { useSelector, useDispatch } from 'react-redux';
+import { left, right } from '../../lib/slices/titleSlice';
+import { RootState } from '../../lib/store';
 
 function Header() {
   return <View></View>;
 }
 
-function MonthHeader() {
+function MonthHeader(props: { currentDate: any; dispatch: Function }) {
   const { colors } = useTheme();
-  const [currentDate, setCurrentDate] = useState({
-    month: getCurrentMonth(),
-    year: getCurrentYear(),
-  });
 
   const handleLeftPress = () => {
-    if (currentDate.month === 0) {
-      setCurrentDate({ month: 11, year: currentDate.year - 1 });
-    } else {
-      setCurrentDate({ month: currentDate.month - 1, year: currentDate.year });
-    }
+    props.dispatch(left());
   };
 
   const isCurrentDate = () => {
     return (
-      getCurrentMonth() == currentDate.month &&
-      getCurrentYear() == currentDate.year
+      getCurrentMonth() == props.currentDate.month &&
+      getCurrentYear() == props.currentDate.year
     );
   };
 
   const handleRightPress = () => {
-    if (!isCurrentDate()) {
-      if (currentDate.month === 11) {
-        setCurrentDate({ month: 0, year: currentDate.year + 1 });
-      } else {
-        setCurrentDate({
-          month: currentDate.month + 1,
-          year: currentDate.year,
-        });
-      }
-    }
+    props.dispatch(right());
   };
 
   return (
@@ -70,7 +56,9 @@ function MonthHeader() {
             isCurrentDate() ? '' : { color: 'gray' },
           ]}
         >
-          {`${getCurrentMonthName(currentDate.month)} ${currentDate.year}`}
+          {`${getCurrentMonthName(props.currentDate.month)} ${
+            props.currentDate.year
+          }`}
         </CustomText>
         <CircleArrowRight
           color={isCurrentDate() ? 'gray' : colors.text}
@@ -108,6 +96,11 @@ const CustomBottomTabBarButton = ({ children, onPress }: any) => (
 export default function TabLayout() {
   const { colors } = useTheme();
 
+  const month = useSelector((state: RootState) => state.title.month);
+  const year = useSelector((state: RootState) => state.title.year);
+  const currentDate = { month: month, year: year };
+  const dispatch = useDispatch();
+
   return (
     <Tabs
       screenOptions={{
@@ -124,7 +117,9 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Journal',
-          headerTitle: () => <MonthHeader />,
+          headerTitle: () => (
+            <MonthHeader currentDate={currentDate} dispatch={dispatch} />
+          ),
           tabBarIcon: ({ color }) => <NotebookPen size={28} color={color} />,
         }}
       />

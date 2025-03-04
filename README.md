@@ -15,3 +15,5 @@ pages
 - diary
 - egos - compiles all egos from diary with diary examples
 - stats
+
+identify common groups of sins that appear in entries

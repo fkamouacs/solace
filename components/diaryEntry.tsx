@@ -11,7 +11,6 @@ const diaryEntry = (props: { entry: Entry }) => {
   const { colors } = useTheme() as CustomTheme;
   const { id, date, text, tags } = props.entry;
 
-  console.log(typeof date);
   const displayTags = () => {
     return tags.map((tag) => {
       return (

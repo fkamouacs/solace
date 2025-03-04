@@ -61,3 +61,6 @@ export type BadgeVariant =
   | 'wrath'
   | 'greed'
   | 'envy';
+
+export type EntriesByDate = Record<string, Entry[]>;
+export type DiaryEntries = Record<string, EntriesByDate[]>;

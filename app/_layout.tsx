@@ -14,6 +14,8 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { DiaryProvider } from '../lib/DiaryContext';
+import { Provider } from 'react-redux';
+import { store } from '../lib/store';
 const LIGHT_THEME: CustomTheme = {
   ...DefaultTheme,
   colors: NAV_THEME.light,
@@ -67,18 +69,20 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme == 'dark' ? DARK_THEME : LIGHT_THEME}>
-      <StatusBar style={colorScheme == 'light' ? 'light' : 'dark'} />
-      <DiaryProvider>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="(tabs)" />
-        </Stack>
-      </DiaryProvider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider value={colorScheme == 'dark' ? DARK_THEME : LIGHT_THEME}>
+        <StatusBar style={colorScheme == 'light' ? 'light' : 'dark'} />
+        <DiaryProvider>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+        </DiaryProvider>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

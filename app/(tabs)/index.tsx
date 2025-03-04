@@ -12,20 +12,41 @@ import DiaryEntryCard from '~/components/diaryEntryCard';
 
 import { Entry } from '~/lib/constants';
 import { DiaryContext } from '../../lib/DiaryContext';
-import { stringToDate } from '~/lib/utils';
+import { isDateInMonth, stringToDate } from '~/lib/utils';
+import type { EntriesByDate, DiaryEntries } from '~/lib/constants';
+import { RootState } from '../../lib/store';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function Index() {
   const { colors } = useTheme();
   const [loading, setLoading] = useState(true);
 
+  const month = useSelector((state: RootState) => state.title.month);
+  const year = useSelector((state: RootState) => state.title.year);
+
   const diaryContext = useContext(DiaryContext);
   if (!diaryContext) return <Text>Loading...</Text>;
   const { entries, addEntry } = diaryContext;
+  const [currentMonth, setCurrentYear] = useState();
 
-  const groupEntriesBySameDay = (
-    entries: Entry[]
-  ): { [date: string]: Entry[] } => {
-    const groupedEntries: { [date: string]: Entry[] } = {};
+  const groupEntriesbySameMonth = (entries: EntriesByDate): DiaryEntries => {
+    const groupedEntries: DiaryEntries = {};
+
+    for (const day in entries) {
+      const [year, month] = day.split('-');
+      const yearMonth = `${year}-${month}`;
+
+      if (!groupedEntries[yearMonth]) {
+        groupedEntries[yearMonth] = [];
+      }
+
+      groupedEntries[yearMonth].push({ [day]: entries[day] });
+    }
+    return groupedEntries;
+  };
+
+  const groupEntriesBySameDay = (entries: Entry[]): EntriesByDate => {
+    const groupedEntries: EntriesByDate = {};
 
     entries.forEach((entry) => {
       // Check the date (ignoring time)
@@ -42,21 +63,26 @@ export default function Index() {
     return groupedEntries;
   };
 
-  const groupedEntries = groupEntriesBySameDay(entries);
-  const dates = Object.keys(groupedEntries).sort(
+  useEffect(() => {}, [month, year]);
+
+  const groupedEntriesByDay = groupEntriesBySameDay(entries);
+  const groupedEntries = groupEntriesbySameMonth(groupedEntriesByDay);
+  const dates = Object.keys(groupedEntriesByDay).sort(
     (a, b) => new Date(b).getTime() - new Date(a).getTime()
   ); // Sort by latest first
 
   const displayEntries = () => {
     return dates.map((date) => {
       const entryDate = stringToDate(date);
-      return (
-        <DiaryEntryCard
-          key={date}
-          date={entryDate}
-          entries={groupedEntries[date]}
-        />
-      );
+
+      if (isDateInMonth(date, `${year} ${month}`))
+        return (
+          <DiaryEntryCard
+            key={date}
+            date={entryDate}
+            entries={groupedEntriesByDay[date]}
+          />
+        );
     });
   };
 

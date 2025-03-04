@@ -57,11 +57,10 @@ export const stringToDate = (dateString: string): Date => {
 
 export const getTimeFromDate = (date: Date): string => {
   // Check if the parsed date is valid
-  if (isNaN(date.getTime())) {
-    throw new Error('Invalid date provided');
-  }
-  const hours = date.getHours(); // Get hours (0-23)
-  const minutes = date.getMinutes(); // Get minutes (0-59)
+  const dateType = new Date(date);
+
+  const hours = dateType.getHours(); // Get hours (0-23)
+  const minutes = dateType.getMinutes(); // Get minutes (0-59)
 
   const ampm = hours >= 12 ? 'PM' : 'AM'; // Determine AM/PM
 
@@ -88,3 +87,18 @@ export const sortEntriesByDate = (
     }
   });
 };
+
+export const isCurrentDate = (month: number, year: number) => {
+  return getCurrentMonth() == month && getCurrentYear() == year;
+};
+
+export function isDateInMonth(dateString: string, monthYear: string): boolean {
+  // Parse the year and month from the date string "YYYY-MM-DD"
+  const [yearFromDate, monthFromDate] = dateString.split('-').map(Number);
+
+  // Split the monthYear string to get the year and month
+  const [yearFromInput, monthFromInput] = monthYear.split(' ').map(Number);
+
+  // Check if both the year and month match
+  return yearFromDate === yearFromInput && monthFromDate === monthFromInput + 1;
+}

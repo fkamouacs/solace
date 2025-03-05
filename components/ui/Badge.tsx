@@ -3,10 +3,13 @@ import React from 'react';
 import { BadgeVariant } from '~/lib/constants';
 
 type BadeProps = {
-  badgeStyle: 'default' | 'secondary';
+  badgeStyle: BadgeStyle;
   variant: BadgeVariant;
   colors: any;
+  onPress?: () => void;
 };
+
+export type BadgeStyle = 'default' | 'secondary';
 
 const variants = {
   pride: '🦚 Pride',
@@ -18,11 +21,21 @@ const variants = {
   envy: '👀 Envy',
 };
 
-const Badge = ({ badgeStyle, variant, colors, ...props }: BadeProps) => {
+const Badge = ({
+  badgeStyle,
+  variant,
+  colors,
+  onPress,
+  ...props
+}: BadeProps) => {
   const styles = getBadgeVariants(colors);
 
   return (
-    <TouchableOpacity activeOpacity={0.8} style={{ marginRight: 5 }}>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={0.8}
+      style={{ marginRight: 5 }}
+    >
       <Text style={[styles.base, styles[badgeStyle]]} {...props}>
         {variants[variant]}
       </Text>
@@ -49,6 +62,7 @@ const getBadgeVariants = (colors: any) =>
     secondary: {
       borderColor: 'transparent',
       backgroundColor: colors.background,
+      color: colors.mutedText,
     },
   });
 

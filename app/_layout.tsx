@@ -39,6 +39,7 @@ export default function RootLayout() {
 
   const [loaded] = useFonts({
     Inter: require('../assets/fonts/Inter_18pt-Regular.ttf'),
+    InterBold: require('../assets/fonts/Inter_18pt-Bold.ttf'),
   });
 
   useEffect(() => {

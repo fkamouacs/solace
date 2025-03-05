@@ -30,10 +30,7 @@ const DiaryEntryCard = (props: { entries: Entry[]; date: Date }) => {
 
   return (
     <View style={{ padding: 6, paddingVertical: 12 }}>
-      <Card
-        style={{ width: screenWidth * 0.75, paddingVertical: 12 }}
-        colors={colors}
-      >
+      <Card style={{ width: screenWidth * 0.85, padding: 12 }} colors={colors}>
         <CardHeader>
           <CardDescription colors={colors}>
             {formatDateToDayName(props.date)}

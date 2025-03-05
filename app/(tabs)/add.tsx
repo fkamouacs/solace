@@ -1,10 +1,16 @@
 import { View, Text } from 'react-native';
 import React from 'react';
+import AddEgo from '~/components/addEgo';
 
 const add = () => {
   return (
-    <View>
-      <Text>add</Text>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+      }}
+    >
+      <AddEgo></AddEgo>
     </View>
   );
 };

@@ -52,7 +52,12 @@ function MonthHeader(props: { currentDate: any; dispatch: Function }) {
         />
         <CustomText
           style={[
-            { fontSize: 24, marginHorizontal: 40 },
+            {
+              fontFamily: 'InterBold',
+              fontWeight: 'bold',
+              fontSize: 24,
+              marginHorizontal: 40,
+            },
             isCurrentDate() ? '' : { color: 'gray' },
           ]}
         >
@@ -83,7 +88,7 @@ const CustomBottomTabBarButton = ({ children, onPress }: any) => (
         width: 50,
         height: 50,
         borderRadius: 35,
-        backgroundColor: '#6200EE',
+        backgroundColor: '#9370DB',
         justifyContent: 'center',
         alignItems: 'center',
       }}
@@ -134,6 +139,20 @@ export default function TabLayout() {
         name="add"
         options={{
           title: 'Add',
+          headerTitle: () => (
+            <CustomText
+              style={[
+                {
+                  fontFamily: 'InterBold',
+                  fontWeight: 'bold',
+                  fontSize: 24,
+                  marginHorizontal: 40,
+                },
+              ]}
+            >
+              New Journal Entry
+            </CustomText>
+          ),
           tabBarLabel: () => null,
           tabBarIcon: ({ color }) => <Plus size={28} color={'white'} />,
           tabBarButton: (props) => <CustomBottomTabBarButton {...props} />,

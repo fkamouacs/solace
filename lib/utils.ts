@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Entry } from './constants';
 
 export const getCurrentMonth = () => {
@@ -102,3 +103,8 @@ export function isDateInMonth(dateString: string, monthYear: string): boolean {
   // Check if both the year and month match
   return yearFromDate === yearFromInput && monthFromDate === monthFromInput + 1;
 }
+
+export const clearAllData = async () => {
+  await AsyncStorage.clear();
+  console.log('All data cleared!');
+};

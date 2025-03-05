@@ -16,6 +16,7 @@ import { isDateInMonth, stringToDate } from '~/lib/utils';
 import type { EntriesByDate, DiaryEntries } from '~/lib/constants';
 import { RootState } from '../../lib/store';
 import { useSelector, useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Index() {
   const { colors } = useTheme();
@@ -27,7 +28,6 @@ export default function Index() {
   const diaryContext = useContext(DiaryContext);
   if (!diaryContext) return <Text>Loading...</Text>;
   const { entries, addEntry } = diaryContext;
-  const [currentMonth, setCurrentYear] = useState();
 
   const groupEntriesbySameMonth = (entries: EntriesByDate): DiaryEntries => {
     const groupedEntries: DiaryEntries = {};
@@ -63,10 +63,8 @@ export default function Index() {
     return groupedEntries;
   };
 
-  useEffect(() => {}, [month, year]);
-
   const groupedEntriesByDay = groupEntriesBySameDay(entries);
-  const groupedEntries = groupEntriesbySameMonth(groupedEntriesByDay);
+
   const dates = Object.keys(groupedEntriesByDay).sort(
     (a, b) => new Date(b).getTime() - new Date(a).getTime()
   ); // Sort by latest first
@@ -78,7 +76,7 @@ export default function Index() {
       if (isDateInMonth(date, `${year} ${month}`))
         return (
           <DiaryEntryCard
-            key={date}
+            key={entryDate.toISOString()}
             date={entryDate}
             entries={groupedEntriesByDay[date]}
           />
@@ -94,10 +92,6 @@ export default function Index() {
           alignItems: 'center',
         }}
       >
-        <Button
-          title="Add Test Entry"
-          onPress={() => addEntry('New diary entry1!', ['pride'])}
-        />
         {displayEntries()}
       </View>
     </ScrollView>

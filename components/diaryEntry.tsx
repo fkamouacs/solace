@@ -14,7 +14,12 @@ const diaryEntry = (props: { entry: Entry }) => {
   const displayTags = () => {
     return tags.map((tag) => {
       return (
-        <Badge key={id} variant={tag} badgeStyle="default" colors={colors} />
+        <Badge
+          key={`${id}${tag}`}
+          variant={tag}
+          badgeStyle="default"
+          colors={colors}
+        />
       );
     });
   };

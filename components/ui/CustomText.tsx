@@ -3,9 +3,7 @@ import { Text, TextProps } from 'react-native';
 
 // Custom Text Component to Apply Default Font
 const CustomText = (props: TextProps) => {
-  return (
-    <Text {...props} style={[props.style, { fontFamily: 'Inter-Regular' }]} />
-  );
+  return <Text {...props} style={[props.style]} />;
 };
 
 export default CustomText;

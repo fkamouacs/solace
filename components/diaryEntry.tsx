@@ -1,16 +1,21 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+import { View, Text, Button } from 'react-native';
+import React, { useContext } from 'react';
 import { CustomTheme, Entry } from '~/lib/constants';
 import CustomText from './ui/CustomText';
 import { CardContent, CardFooter } from './ui/Card';
 import Badge from './ui/Badge';
 import { useTheme } from '@react-navigation/native';
 import { getTimeFromDate } from '~/lib/utils';
+import XButton from './ui/XButton';
+import { DiaryContext } from '../lib/DiaryContext';
 
 const diaryEntry = (props: { entry: Entry }) => {
   const { colors } = useTheme() as CustomTheme;
   const { id, date, text, tags } = props.entry;
 
+  const diaryContext = useContext(DiaryContext);
+  if (!diaryContext) return <Text>Loading...</Text>;
+  const { removeEntry } = diaryContext;
   const displayTags = () => {
     return tags.map((tag) => {
       return (
@@ -24,10 +29,23 @@ const diaryEntry = (props: { entry: Entry }) => {
     });
   };
 
+  const handleDeleteEntry = () => {
+    removeEntry(id);
+  };
+
   return (
     <>
       <CardContent>
-        <CustomText>{text}</CustomText>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <CustomText>{text}</CustomText>
+          <XButton onPress={() => handleDeleteEntry()} />
+        </View>
       </CardContent>
       <CardContent
         style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}
